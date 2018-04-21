@@ -1,16 +1,32 @@
 {
-  "name": "chrome-extension",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+  "name": "domnator",
+  "version": "0.0.1",
+  "description": "DOM N A T O R",
+  "author": "Can Chen",
+  "keywords": [
+    "Chrome Extension"
+  ],
+  "engines": {
+    "node": "8.11.1"
   },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2"
+  },
+  "dependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "npm-run-all clean create-folder copy:manifest copy:resources build:background copy:background build:content copy:content build:popup copy:popup",
+    "create-folder": "mkdir build",
+    "build:background": "cd src/background && yarn && yarn build",
+    "build:content": "cd src/content && yarn && yarn build",
+    "build:popup": "cd src/popup && yarn && yarn build",
+    "copy:background": "cp -a src/background/build build/background",
+    "copy:content": "cp -a src/content/build build/content",
+    "copy:popup": "cp -a src/popup/build/. build",
+    "copy:manifest": "cp manifest.json build",
+    "copy:resources": "cp -a src/resources build/resources",    
+    "clean": "npm-run-all clean:background clean:content clean:popup",
+    "clean:background": "rm -rf build",
+    "clean:content": "rm -rf build",
+    "clean:popup": "rm -rf build"
   }
 }

@@ -2,11 +2,17 @@
 
 # dependencies
 /node_modules
+src/background/node_modules
+src/content/node_modules
+src/popup/node_modules
 
 # testing
 /coverage
 
 # production
+src/background/build
+src/content/build
+src/popup/build
 /build
 
 # misc
